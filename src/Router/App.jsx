@@ -9,6 +9,7 @@ const Login = lazy(() => import("../Pages/Login/Login"));
 
 const Error = lazy(() => import("../Pages/Error/Error"));
 const CartPage = lazy(() => import("../Pages/CartPage/CartPage"));
+const CheckOut = lazy(() => import("../Pages/CheckOut/CheckOut"));
 const Details = lazy(() => import("../Pages/Details/Details"));
 
 export default function App() {
@@ -25,6 +26,10 @@ export default function App() {
         {
           path: "cart",
           element: <CartPage />,
+        },
+        {
+          path: "CheckOut",
+          element: <CheckOut />,
         },
         {
           path: "Details/:id",
