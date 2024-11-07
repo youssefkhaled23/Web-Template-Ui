@@ -1,2 +1,2 @@
-# Web-Template-Ui
-Web-Template-Ui
+# Web-Template
+Web-Template
