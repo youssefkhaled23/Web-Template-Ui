@@ -6,11 +6,15 @@ const MainLayout = lazy(() => import("../Layout/MainLayout"));
 const Home = lazy(() => import("../Pages/Home/Home"));
 const AuthLayout = lazy(() => import("../Layout/AuthLayout"));
 const Login = lazy(() => import("../Pages/Login/Login"));
-
 const Error = lazy(() => import("../Pages/Error/Error"));
 const CartPage = lazy(() => import("../Pages/CartPage/CartPage"));
 const CheckOut = lazy(() => import("../Pages/CheckOut/CheckOut"));
 const Details = lazy(() => import("../Pages/Details/Details"));
+const Register = lazy(() => import("../Pages/SignUp/SignUp"));
+const OTP = lazy(() => import("../Pages/OTP/OTP"));
+const ForgetPassword = lazy(() =>
+  import("../Pages/ForgetPassword/ForgetPassword")
+);
 
 export default function App() {
   const router = createBrowserRouter([
@@ -44,6 +48,18 @@ export default function App() {
         {
           path: "login",
           element: <Login />,
+        },
+        {
+          path: "register",
+          element: <Register />,
+        },
+        {
+          path: "forgetPassword",
+          element: <ForgetPassword />,
+        },
+        {
+          path: "OTP-verify",
+          element: <OTP />,
         },
       ],
     },
