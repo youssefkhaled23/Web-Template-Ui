@@ -1,38 +1,48 @@
-import { useState } from "react";
-import { Minus, Plus } from "lucide-react";
-import { SwiperSlide } from "swiper/react";
-import SwiperComponents from "../../Components/DComponents/SwiperComponents/SwiperComponents";
-import img from "../../assets/imges/db377c4c79623392434e52dff35e335b.png";
-import star from "../../assets/Svg/Star.svg";
-import cart from "../../assets/Svg/Cart.svg";
-import paymendMethod from "../../assets/Svg/paymentMethod.svg";
-import product from "../../data/productDetails";
-import ProductGrid from "../../Components/Section/ProductGrid/ProductGrid";
-import ProductTable from "../../Components/SComponents/ProductTable/ProductTable";
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import SwiperComponents from '../../DComponents/SwiperComponents/SwiperComponents';
+import product from '../../../data/productDetails';
+import { SwiperSlide } from 'swiper/react';
+import { Minus, Plus } from 'lucide-react';
+import img from "../../../assets/imges/db377c4c79623392434e52dff35e335b.png";
+import star from "../../../assets/Svg/Star.svg"
+import cart from "../../../assets/Svg/Cart.svg";
+import paymendMethod from "../../../assets/Svg/paymentMethod.svg";
 
-const ProductDetails = () => {
-  const [selectedImage, setSelectedImage] = useState(img);
-  const [quantity, setQuantity] = useState(1);
 
-  const updateQuantity = (value) => {
-    setQuantity(Math.max(1, quantity + value));
-  };
+const Popup = ({ isOpen, onClose }) => {
+    const [selectedImage, setSelectedImage] = useState(img);
+    const [quantity, setQuantity] = useState(1);
+  
+    const updateQuantity = (value) => {
+      setQuantity(Math.max(1, quantity + value));
+    };
+  
+    if (!isOpen) return null;
 
   return (
-    <div>
-      <div className="my-6 w-[90%] mx-auto border border-green-700">
-        <div className="grid grid-cols-1 md:grid-cols-3 md:gap-4 border border-yellow-600">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="bg-white rounded-lg  w-11/12 md:w-3/4 lg:w-2/3 p-4  max-h-[90vh] overflow-y-auto relative">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl"
+        >
+          &times;
+        </button>
+        <div className="my-6 w-[90%] mx-auto  ">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:gap-4 ">
           <div className="col-span-1">
             <div className="flex items-center justify-center">
               <div className="w-full border border-gray-200 rounded-md">
                 <img
                   src={selectedImage}
-                  className="w-full h-[450px]"
+                  className="w-full  h-[350px]"
                   alt="Main Display"
                 />
               </div>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 bg-white rounded-md border ">
               <SwiperComponents
                 slidesPerView={1}
                 spaceBetween={5}
@@ -46,14 +56,14 @@ const ProductDetails = () => {
                 onSwiper={(swiper) => swiper}
               >
                 {product.images.map((item, index) => (
-                  <SwiperSlide key={index} className="w-24 h-24">
+                  <SwiperSlide key={index} className="w-20 h-20">
                     <div
                       className="border w-full h-full mx-auto border-gray-200 rounded-md cursor-pointer"
                       onClick={() => setSelectedImage(item.src)}
                     >
                       <img
                         src={item.src}
-                        className="h-[100px] w-full"
+                        className="h-[70px]  w-full"
                         alt={item.title}
                       />
                     </div>
@@ -62,8 +72,8 @@ const ProductDetails = () => {
               </SwiperComponents>
             </div>
           </div>
-          <div className="col-span-2 border border-red-500">
-            <div className="border p-4 rounded-md">
+          <div className="col-span-2 border bg-white  rounded-md   ">
+            <div className=" p-4 ">
               <div className="flex items-center">
                 {Array(5)
                   .fill()
@@ -111,29 +121,29 @@ const ProductDetails = () => {
                 </div>
               </div>
               <hr className="my-4 bg-gray-200" />
-              <h3 className="font-bold text-sm my-2">Features</h3>
-              <div className="space-y-2">
+              {/* <h3 className="font-bold text-sm my-2">Features</h3> */}
+              {/* <div className="space-y-2 border border-green-600">
                 {product.features.map((feature, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <img src={feature.icon} className="w-6 h-6" alt="" />
                     <p className="text-sm">{feature.title}</p>
                   </div>
                 ))}
-              </div>
-              <div className="flex flex-wrap items-center gap-4 mt-6">
-                <div className="flex border px-5 md:w-[164px] py-2 rounded-md items-center justify-center gap-4">
+              </div> */}
+              <div className="flex flex-wrap items-center gap-2 mt-1  ">
+                <div className="flex border  px-4 md:w-[164px] py-1 rounded-md items-center justify-center gap-4">
                   <button
                     onClick={() => updateQuantity(-1)}
                     className="flex items-center justify-center"
                   >
-                    <Minus className="h-4 w-4" />
+                    <Minus className="h-3 w-3" />
                   </button>
                   <span className="text-center">{quantity}</span>
                   <button
                     onClick={() => updateQuantity(1)}
                     className="flex items-center justify-center"
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-3 w-3" />
                   </button>
                 </div>
                 <button className="flex items-center gap-2 bg-blue-500 px-8 py-2 rounded-md text-white font-bold text-base">
@@ -151,21 +161,20 @@ const ProductDetails = () => {
               </p>
               <img
                 src={paymendMethod}
-                className="w-[300px]"
+                className="w-[100px]"
                 alt="Payment Methods"
               />
             </div>
           </div>
         </div>
       </div>
-      <div className="my-6 ">
-        <ProductTable />
-      </div>
-      <div className="my-6 mx-auto w-[95%] ">
-        <ProductGrid />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDetails;
+export default Popup;
+Popup.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+  };

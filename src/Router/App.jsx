@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loading from "../Components/DComponents/Loading/Loading";
+import PaymentSuccessful from "../Pages/PaymentSuccessful/PaymentSuccessful";
 
 const MainLayout = lazy(() => import("../Layout/MainLayout"));
 const Home = lazy(() => import("../Pages/Home/Home"));
@@ -30,6 +31,10 @@ export default function App() {
         {
           path: "CheckOut",
           element: <CheckOut />,
+        },
+        {
+          path: "paymentsuccessful",
+          element: <PaymentSuccessful />,
         },
         {
           path: "Details/:id",
