@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { ShoppingCart, Heart, Eye } from "lucide-react";
 import Star from "../../../assets/Svg/Star.svg";
 import PropTypes from "prop-types"; // Add this import
+import Popup from "../../SComponents/Popup/Popup";
+import { useState } from "react";
 
 const ProductCard = ({ products }) => {
   const renderBadge = (product) => {
@@ -32,13 +34,13 @@ const ProductCard = ({ products }) => {
     }
     return null;
   };
-
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 ">
       {products.map((product) => (
         <div
           key={product.id}
-          className="border rounded-[3px] relative group cursor-pointer"
+          className="border rounded-[3px]  relative group cursor-pointer"
         >
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
@@ -54,7 +56,7 @@ const ProductCard = ({ products }) => {
                 </div>
               </Link>
               <Link to="#">
-                <div className="bg-[#2091F9] p-2 rounded-full transition-opacity duration-300 delay-450">
+                <div onClick={() => setIsPopupOpen(true)} className="bg-[#2091F9] p-2 rounded-full transition-opacity border border-green-600 duration-300 delay-450">
                   <Eye className="w-6 h-6 text-white" />
                 </div>
               </Link>
@@ -89,6 +91,7 @@ const ProductCard = ({ products }) => {
           </div>
         </div>
       ))}
+      <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   );
 };

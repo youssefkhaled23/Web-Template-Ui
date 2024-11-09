@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loading from "../Components/DComponents/Loading/Loading";
+import PaymentSuccessful from "../Pages/PaymentSuccessful/PaymentSuccessful";
 
 const MainLayout = lazy(() => import("../Layout/MainLayout"));
 const Home = lazy(() => import("../Pages/Home/Home"));
@@ -19,6 +20,7 @@ const ForgetPassword = lazy(() =>
 
 export default function App() {
   const router = createBrowserRouter([
+    
     {
       path: "/",
       element: <MainLayout />,
@@ -27,6 +29,7 @@ export default function App() {
         {
           index: true,
           element: <Home />,
+          
         },
         {
           path: "cart",
@@ -39,6 +42,10 @@ export default function App() {
         {
           path: "Products",
           element: <Products />,
+=======
+          path: "paymentsuccessful",
+          element: <PaymentSuccessful />,
+>>>>>>> hussien
         },
         {
           path: "Details/:id",
