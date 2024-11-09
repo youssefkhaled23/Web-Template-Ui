@@ -9,8 +9,10 @@ const Breadcrumb = () => {
 
   // تحديث المسارات عند تغيير المسار الحالي
   useEffect(() => {
-    if (location.pathname === "/") {
-      // تفريغ المسارات عند العودة إلى الصفحة الرئيسية
+    if (
+      location.pathname === "/" ||
+      location.pathname === "/paymentsuccessful"
+    ) {
       setBreadcrumbs([]);
     } else {
       // إضافة المسار الجديد إلى القائمة إذا لم يكن مكررًا
@@ -26,12 +28,20 @@ const Breadcrumb = () => {
   // دالة لتحديث الـ breadcrumbs عند الرجوع إلى مسار سابق
   const handleBreadcrumbClick = (path) => {
     // احتفظ فقط بالمسارات التي تسبق أو تطابق المسار الذي تم النقر عليه
-    const updatedBreadcrumbs = breadcrumbs.filter((breadcrumb) => breadcrumb === path || breadcrumbs.indexOf(breadcrumb) < breadcrumbs.indexOf(path));
+    const updatedBreadcrumbs = breadcrumbs.filter(
+      (breadcrumb) =>
+        breadcrumb === path ||
+        breadcrumbs.indexOf(breadcrumb) < breadcrumbs.indexOf(path)
+    );
     setBreadcrumbs(updatedBreadcrumbs);
   };
 
   return (
-    <div className="bg-gray-100 py-4 px-6 rounded-md">
+    <div
+      className={`bg-gray-100 w-[90%] mx-auto mt-6 py-4 px-6 rounded-md ${
+        location.pathname === "/paymentsuccessful" ? "hidden" : ""
+      }`}
+    >
       <nav className="text-sm">
         <ol className="list-reset flex text-gray-600">
           {/* Home Link */}

@@ -20,7 +20,6 @@ const ForgetPassword = lazy(() =>
 
 export default function App() {
   const router = createBrowserRouter([
-    
     {
       path: "/",
       element: <MainLayout />,
@@ -29,7 +28,6 @@ export default function App() {
         {
           index: true,
           element: <Home />,
-          
         },
         {
           path: "cart",
@@ -42,10 +40,10 @@ export default function App() {
         {
           path: "Products",
           element: <Products />,
-=======
+        },
+        {
           path: "paymentsuccessful",
           element: <PaymentSuccessful />,
->>>>>>> hussien
         },
         {
           path: "Details/:id",
