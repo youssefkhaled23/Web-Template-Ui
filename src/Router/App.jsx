@@ -15,6 +15,7 @@ const Details = lazy(() => import("../Pages/Details/Details"));
 
 export default function App() {
   const router = createBrowserRouter([
+    
     {
       path: "/",
       element: <MainLayout />,
@@ -23,6 +24,7 @@ export default function App() {
         {
           index: true,
           element: <Home />,
+          
         },
         {
           path: "cart",
