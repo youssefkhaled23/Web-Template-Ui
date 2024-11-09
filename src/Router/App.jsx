@@ -12,6 +12,7 @@ const CheckOut = lazy(() => import("../Pages/CheckOut/CheckOut"));
 const Details = lazy(() => import("../Pages/Details/Details"));
 const Register = lazy(() => import("../Pages/SignUp/SignUp"));
 const OTP = lazy(() => import("../Pages/OTP/OTP"));
+const Products = lazy(() => import("../Pages/Product/Product"));
 const ForgetPassword = lazy(() =>
   import("../Pages/ForgetPassword/ForgetPassword")
 );
@@ -34,6 +35,10 @@ export default function App() {
         {
           path: "CheckOut",
           element: <CheckOut />,
+        },
+        {
+          path: "Products",
+          element: <Products />,
         },
         {
           path: "Details/:id",

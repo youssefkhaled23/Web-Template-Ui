@@ -7,7 +7,7 @@ import PropTypes from "prop-types"; // Add this import
 import usePagination from "../../../Hooks/usePagination";
 import Pagination from "../Pagination/Pagination";
 
-const ReusableCard = ({ headingTitle, categories, Data }) => {
+const ReusableCard = ({ headingTitle, categories, Data, status }) => {
   const [activeTab, setActiveTab] = useState("All Product");
 
   // Filter products based on active tab
@@ -26,11 +26,15 @@ const ReusableCard = ({ headingTitle, categories, Data }) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col md:flex-row items-center justify-between">
+      <div
+        className={`flex flex-col md:flex-row items-center justify-between ${
+          status ? "hidden" : ""
+        }`}
+      >
         <Heading Title={headingTitle} />
         <div className="flex flex-col md:flex-row items-center gap-2">
           <div className="flex items-center gap-2">
-            {categories.map((item, index) => (
+            {categories?.map((item, index) => (
               <button
                 key={index}
                 onClick={() => setActiveTab(item.categoryName)}
@@ -69,7 +73,8 @@ const ReusableCard = ({ headingTitle, categories, Data }) => {
 
 export default ReusableCard;
 ReusableCard.propTypes = {
-  headingTitle: PropTypes.string.isRequired, // Validate headingTitle
-  categories: PropTypes.array.isRequired,
-  Data: PropTypes.array.isRequired,
+  headingTitle: PropTypes.string, // Validate headingTitle
+  categories: PropTypes.array,
+  Data: PropTypes.array,
+  status: PropTypes.bool,
 };
